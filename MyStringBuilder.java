@@ -14,25 +14,6 @@ public class MyStringBuilder{
 		this.size= this.DEFAULT_SIZE;
 		this.string = new char[DEFAULT_SIZE];
 	}
-	
-	
-	//constructor to create a string builder object of required size
-	public MyStringBuilder(int userSize){
-		// need to ensure if the initial size of the array is good enough, if not then we need to increase the size by multiplying current size by buffer multiplier.
-		if (userSize <= this.size){
-			this();
-		} else  {
-	 		this.string = new char[DEFAULT_SIZE * BUFFER_MULTIPLIER];
-			this.size = DEFAULT_SIZE * BUFFER_MULTIPLIER;		
-		}
-	}
-	
-	//constructor to create a string builder object for a given char array
-	public MyStringBuilder(String newString){
-		this.string = newString.toCharArray();
-		this.size = newString.length();
-		this.charCount = newString.length();
-	}
 
 	private boolean isResizeRequired(int userSize){
 		return (charCount + userSize) > this.size;
