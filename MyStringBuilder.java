@@ -1,29 +1,65 @@
-import java.util.List;
-import java.util.ArrayList;
+
 
 public class MyStringBuilder{
 	
-	private List<String> stringBuilder = new ArrayList<>();
+	private static final int DEFAULT_SIZE=16;
+	private static final int BUFFER_MULTIPLIER=2;
 	
-	public List<String> getStringBuilder(){
-		return stringBuilder;
-	}
-	
-	// I don't think setter is needed because we dont want to accidentally set a blank list of strings in the member field of this object.
+	private char[] string;
+	private int size;
+	private int charCount;
 
-	public MyStringBuilder append(String string) {
-		this.stringBuilder.add(string);
+	// add default constructor
+	public MyStringBuilder(){
+		this.size= this.DEFAULT_SIZE;
+		this.string = new char[DEFAULT_SIZE];
+	}
+
+	private boolean isResizeRequired(int userSize){
+		return (charCount + userSize) > this.size;
+	}
+
+	public MyStringBuilder append(String newString){
+		while (isResizeRequired(newString.length())){
+			resizeBuffer(newString.length());
+		}
+		addString(newString);
+		updateCharCount(newString.length());
 		return this;
 	}
+
 	
-	public String toString(){
-		String concatenatedString = "";
-		for (String string:stringBuilder){	
-			concatenatedString += string;
+	private void resizeBuffer(int newStringLength){
+		int newSize = this.size * BUFFER_MULTIPLIER;
+		this.size = newSize;
+		char[] newCharArray = new char[newSize];
+		for (int i = 0; i < this.string.length; i++){
+			newCharArray[i] = this.string[i];
 		}
-		return concatenatedString;
+		this.string = newCharArray;
+		return;
+	}
+
+	private void addString(String newString){
+		int currentPosition=this.charCount;
+		for (int i = 0; i < newString.length(); i++){
+			this.string[currentPosition] = newString.charAt(i);
+			currentPosition+=1;
+		}
+	}
+
+	private void updateCharCount(int charCount){
+		this.charCount+=charCount;
+	}
+
+	public String toString(){
+		return new String(this.string);
 	}
 }
+
+
+
+
 
 class Test{
 	
