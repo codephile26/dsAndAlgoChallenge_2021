@@ -1,5 +1,4 @@
 
-
 public class MyStringBuilder{
 	
 	private static final int DEFAULT_SIZE=16;
@@ -15,8 +14,16 @@ public class MyStringBuilder{
 		this.string = new char[DEFAULT_SIZE];
 	}
 
-	private boolean isResizeRequired(int userSize){
-		return (charCount + userSize) > this.size;
+	public MyStringBuilder(String newString){
+		// we have done this to take of care of that the variable size should always be equal to the multiple of default size.
+		//   in this manner we do not need to add new overloaded methods to take of the case when size== length of new string being passed to the constructor.
+		this();
+		append(newString);
+	}
+
+	public MyStringBuilder(char [] string){
+		this();
+		append(string);
 	}
 
 	public MyStringBuilder append(String newString){
@@ -26,6 +33,15 @@ public class MyStringBuilder{
 		addString(newString);
 		updateCharCount(newString.length());
 		return this;
+	}
+	
+	public MyStringBuilder append(char [] newString){
+		while (isResizeRequired(newString.length)){
+			resizeBuffer(newString.length);
+		}
+		addString(newString);
+		updateCharCount(newString.length);
+		return this;	
 	}
 
 	
@@ -48,8 +64,20 @@ public class MyStringBuilder{
 		}
 	}
 
+	private void addString(char [] newString){
+		int currentPosition = this.charCount;
+		for (int i = 0; i < newString.length; i++) {
+			this.string[currentPosition] = newString[i];
+			currentPosition+=1;
+		}
+	}
+
 	private void updateCharCount(int charCount){
 		this.charCount+=charCount;
+	}
+
+	private boolean isResizeRequired(int userSize){
+		return (charCount + userSize) > this.size;
 	}
 
 	public String toString(){
@@ -60,9 +88,6 @@ public class MyStringBuilder{
 }
 
 
-
-
-
 class Test{
 	
 	public static void main(String...ar){
@@ -70,6 +95,7 @@ class Test{
 		stringBuilder.append("Dimple");
 		stringBuilder.append("Gaurav");
 		stringBuilder.append("Sarupria");
+		stringBuilder.append("8thDecember2019UdaipurRajasthanIndia");
 		System.out.println(stringBuilder.toString());
 	}
 }		
