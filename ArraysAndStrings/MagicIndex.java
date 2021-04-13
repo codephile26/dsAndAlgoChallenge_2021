@@ -1,7 +1,7 @@
 public class MagicIndex {
 
 	public static void main(String...ar){
-		int [] magicArray = {1,2,3,8,9,11,10,13};
+		int [] magicArray = {0,1,2,3,8,9,11,10,13};
 		// int magicIndex = magicSlow(magicArray);
 		// System.out.println(magicIndex);
 		int fastMagicIndex = magicFast(magicArray);
