@@ -17,6 +17,22 @@ public class RemoveDuplicates{
 		}
 	}
 
+	public static void deleteDuplicatesNoBuffer(ListNode n){
+		ListNode current = n;
+		while (current != null){
+			ListNode runner = current;
+			while (runner.next != null){
+				if (runner.next.data == current.data){
+					runner.next = runner.next.next;
+				}
+				else {
+					runner = runner.next;
+				}
+			}
+			current = current.next;
+		}
+	}
+
 	public static void main(String...ar){
 		ListNode n = new ListNode(3);
 		n.appendToTail(5);
@@ -27,7 +43,7 @@ public class RemoveDuplicates{
 		n.appendToTail(7);
 		System.out.println("Before removing duplicates:");
 		printAllElementsInLinkedList(n);
-		deleteDuplicates(n);
+		deleteDuplicatesNoBuffer(n);
 		System.out.println("After removing duplicates:");
 		printAllElementsInLinkedList(n);
 	}
