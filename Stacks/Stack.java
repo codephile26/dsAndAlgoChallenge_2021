@@ -12,11 +12,11 @@ public class Stack<T>{
 
 	//push, pop, peek, isEmpty
 
-	public StackNode<T> pop() throws EmptyStackException{
+	public T pop() throws EmptyStackException{
 		if (top == null) throw new EmptyStackException();
 		StackNode<T> t = top;
 		top = top.next;
-		return t;
+		return t.data;
 	}
 
 	public void push(T data){
