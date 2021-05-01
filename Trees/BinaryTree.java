@@ -17,6 +17,7 @@ public class BinaryTree<T>{
 			int lHeight = getHeight(root.getLeft());
 			int rHeight = getHeight(root.getRight());
 
+			// lHeight + 1/rHeight + 1 increase the height of the tree by 1 in each recursive call
 			return (lHeight > rHeight) ? (lHeight + 1) : (rHeight + 1);
 		}
 	}
