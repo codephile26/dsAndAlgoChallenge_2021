@@ -2,39 +2,28 @@ import java.util.LinkedList;
 import java.util.Iterator;
 
 public class GraphDFS{
-	// made up of Vertices and Edges
-	private int V;
-	private LinkedList<Integer> [] edges;
+	// visited array boolean to mark the graph nodes as visited or univisited
 	boolean [] visited;
 
 	//constructor- accepts number of vertices
-	public GraphDFS(int V){
-		this.V=V;
-		edges = new LinkedList[V];
-		for (int i = 0; i < V; ++i){
-			edges[i] = new LinkedList<Integer>();
-		}
-		visited = new boolean[V];
+	public GraphDFS(Graph g){
+		visited = new boolean[g.getNumberOfNodes()];
 	}
 
-	//add Edge v-w - this is an example of an undirected graph
-	public void addEdge(int v, int w){
-		edges[v].add(w);
+	public void dfs(Graph g,int v){
+		dfsUtil(g,v);
 	}
 
-	public void dfs(int v){
-		dfsUtil(v);
-	}
-
-	public void dfsUtil(int v){
+	private void dfsUtil(Graph g, int v){
 		System.out.print(v + " ");
 		visited[v]=true;
+		LinkedList<Integer>[] edges = g.getEdges();
 
 		Iterator<Integer> i = edges[v].listIterator();
 		while (i.hasNext()){
 			int n = i.next();
 			if (!visited[n]){
-				dfsUtil(n);
+				dfsUtil(g,n);
 			}
 		}
 	}

@@ -3,29 +3,17 @@ import java.util.Queue;
 import java.util.ListIterator;
 
 public class GraphBFS{
-
-	private int V;
-	private LinkedList<Integer> [] edges;
 	private boolean [] visited;
 
-	public GraphBFS(int V){
-		this.V = V;
-		edges = new LinkedList[V];
-		for (int i = 0; i < V; i++){
-			edges[i] = new LinkedList();
-		}
-		visited = new boolean[this.V];
+	public GraphBFS(Graph g){
+		visited = new boolean[g.getNumberOfNodes()];
 	}
 
-	public void addEdge(int v,int w){
-		this.edges[v].add(w);
-	}
-
-	public void bfs(int s){
+	public void bfs(Graph g,int s){
 		Queue<Integer> queue = new LinkedList();
 		visited[s] = true;
 		queue.add(s);
-
+		LinkedList<Integer> [] edges = g.getEdges();
 		while(!queue.isEmpty()){
 			int current = queue.remove();
 			System.out.print(current);

@@ -1,6 +1,6 @@
 public class GraphBFSTest{
 	public static void main(String [] args){
-		GraphBFS graph = new GraphBFS(6);
+		Graph graph = new Graph(6);
 		graph.addEdge(0,1);
 		graph.addEdge(0,3);
 		graph.addEdge(1,5);
@@ -10,6 +10,7 @@ public class GraphBFSTest{
 		graph.addEdge(5,4);
 		graph.addEdge(4,3);
 		graph.addEdge(2,0);
-		graph.bfs(0);
+		GraphBFS graphBfs = new GraphBFS(graph);
+		graphBfs.bfs(graph,0);
 	}
 }

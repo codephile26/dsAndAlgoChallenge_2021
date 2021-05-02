@@ -1,6 +1,6 @@
 public class GraphDFSTest{
 	public static void main(String...ar){
-		GraphDFS g = new GraphDFS(6);
+		Graph g = new Graph(6);
 		g.addEdge(0, 1);
 		g.addEdge(0, 3);
 		g.addEdge(1, 3);
@@ -11,6 +11,7 @@ public class GraphDFSTest{
 		g.addEdge(5, 4);
 		g.addEdge(4, 3);
 		System.out.println("Nodes of this graph in DFS order are:");
-		g.dfs(0);
+		GraphDFS graphDfs = new GraphDFS(g);
+		graphDfs.dfs(g,0);
 	}
 }
