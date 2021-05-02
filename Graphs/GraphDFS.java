@@ -1,14 +1,14 @@
 import java.util.LinkedList;
 import java.util.Iterator;
 
-public class Graph{
+public class GraphDFS{
 	// made up of Vertices and Edges
 	private int V;
 	private LinkedList<Integer> [] edges;
 	boolean [] visited;
 
 	//constructor- accepts number of vertices
-	public Graph(int V){
+	public GraphDFS(int V){
 		this.V=V;
 		edges = new LinkedList[V];
 		for (int i = 0; i < V; ++i){
@@ -23,7 +23,6 @@ public class Graph{
 	}
 
 	public void dfs(int v){
-		
 		dfsUtil(v);
 	}
 

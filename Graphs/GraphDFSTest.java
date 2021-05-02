@@ -1,6 +1,6 @@
 public class GraphDFSTest{
 	public static void main(String...ar){
-		Graph g = new Graph(6);
+		GraphDFS g = new GraphDFS(6);
 		g.addEdge(0, 1);
 		g.addEdge(0, 3);
 		g.addEdge(1, 3);
