@@ -1,10 +1,10 @@
-public class TreeTraversal<T>{
+public class TreeTraversal{
 	
-	public void visitNode(Node<T> node){
-		System.out.println(node.getData());
+	public static void visitNode(TreeNode node){
+		System.out.print(node.getData() + " ");
 	}
 
-	public void inorderTraversal(Node<T> node){
+	public static void inorderTraversal(TreeNode node){
 		if (node == null){
 			return;
 		}
@@ -13,7 +13,7 @@ public class TreeTraversal<T>{
 		inorderTraversal(node.getRight());
 	}
 
-	public void preorderTraversal(Node<T> node){
+	public static void preorderTraversal(TreeNode node){
 		if (node == null){
 			return;
 		}
@@ -22,7 +22,7 @@ public class TreeTraversal<T>{
 		preorderTraversal(node.getRight());
 	}
 
-	public void postorderTraversal(Node<T> node){
+	public static void postorderTraversal(TreeNode node){
 		if (node == null){
 			return;
 		}

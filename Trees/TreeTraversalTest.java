@@ -28,5 +28,4 @@ public class TreeTraversalTest{
 		System.out.println("Postorder Traversal");
 		treeTraversal.postorderTraversal(rootNode);
 	}
-
 }
