@@ -1,4 +1,4 @@
-public class TreeHeight{
+public class TreeHeightAndBalance{
 
 	public static int getHeight(TreeNode root){
 		if (root== null){
@@ -9,6 +9,19 @@ public class TreeHeight{
 		int rHeight = getHeight(root.getRight()) + 1;
 
 		return (lHeight > rHeight)? lHeight : rHeight;
+	}
+
+	public static boolean isBalanced(TreeNode root){
+		if (root == null){
+			return true;
+		}
+
+		int heightDiff = getHeight(root.getLeft()) - getHeight(root.getRight());
+		if (Math.abs(heightDiff) > 1){
+			return false;
+		} else {
+			return isBalanced(root.getLeft()) && isBalanced(root.getRight());
+		}
 	}
 
 	public static void main(String...ar){
@@ -27,6 +40,7 @@ public class TreeHeight{
 		leftChild2.setRight(leftChild3);
 		root.setLeft(left);
 		System.out.println("Height of tree is: " + getHeight(root));
+		System.out.println("The tree is balanced " + isBalanced(root));
 	}
 
 }
