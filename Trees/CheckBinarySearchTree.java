@@ -12,8 +12,6 @@ public class CheckBinarySearchTree{
 			return false;
 		}
 		
-		System.out.println(" LastData: " + lastData);
-		System.out.print("RootData " + root.getData());
 		// visit root node
 		if (root.getData() < lastData){
 			return false;
