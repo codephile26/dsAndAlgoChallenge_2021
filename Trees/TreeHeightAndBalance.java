@@ -24,6 +24,30 @@ public class TreeHeightAndBalance{
 		}
 	}
 
+	private static int checkHeight(TreeNode root){
+		if (root == null){
+			return 0;
+		}
+
+		int leftHeight = checkHeight(root.getLeft());
+		if (leftHeight == Integer.MIN_VALUE) return Integer.MIN_VALUE;
+
+		int rightHeight = checkHeight(root.getRight());
+		if (rightHeight == Integer.MIN_VALUE) return Integer.MIN_VALUE;
+
+		int heightDiff = Math.abs(leftHeight - rightHeight);
+		if (heightDiff > 1){
+			return Integer.MIN_VALUE;
+		}
+		else {
+			return (Math.max(leftHeight,rightHeight) + 1);
+		}
+	}
+
+	public static boolean isTreeBalanced(TreeNode root){
+		return checkHeight(root) != Integer.MIN_VALUE;
+	}
+
 	public static void main(String...ar){
 		TreeNode<Integer> root = new TreeNode<>();
 		root.setData(1);
@@ -40,7 +64,6 @@ public class TreeHeightAndBalance{
 		leftChild2.setRight(leftChild3);
 		root.setLeft(left);
 		System.out.println("Height of tree is: " + getHeight(root));
-		System.out.println("The tree is balanced " + isBalanced(root));
+		System.out.println("The tree is balanced " + isTreeBalanced(root));
 	}
-
 }
