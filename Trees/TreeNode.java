@@ -2,6 +2,13 @@ public class TreeNode<T>{
 	private T data;
 	private TreeNode left, right;
 
+	public TreeNode(T data){
+		this.data = data;
+	}
+
+	public TreeNode(){
+	}
+
 	public void setData(T data){
 		this.data = data;
 	}
