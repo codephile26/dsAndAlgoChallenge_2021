@@ -1,18 +1,18 @@
 public class TreeTraversalTest{
 	public static void main(String [] ar){
-		Node<Integer> rootNode = new Node<>();
+		TreeNode<Integer> rootNode = new TreeNode<>();
 		rootNode.setData(15);
-		Node<Integer> leftSubtree = new Node<>();
+		TreeNode<Integer> leftSubtree = new TreeNode<>();
 		leftSubtree.setData(12);
-		Node<Integer> rightSubtree = new Node<>();
+		TreeNode<Integer> rightSubtree = new TreeNode<>();
 		rightSubtree.setData(18);
-		Node<Integer> leftSubtreeChild1 = new Node();
+		TreeNode<Integer> leftSubtreeChild1 = new TreeNode();
 		leftSubtreeChild1.setData(8);
-		Node<Integer> leftSubtreeChild2 = new Node();
+		TreeNode<Integer> leftSubtreeChild2 = new TreeNode();
 		leftSubtreeChild2.setData(13);
-		Node<Integer> rightSubtreeChild1 = new Node();
+		TreeNode<Integer> rightSubtreeChild1 = new TreeNode();
 		rightSubtreeChild1.setData(16);
-		Node<Integer> rightSubtreeChild2 = new Node();
+		TreeNode<Integer> rightSubtreeChild2 = new TreeNode();
 		rightSubtreeChild2.setData(20);
 		rootNode.setLeft(leftSubtree);
 		rootNode.setRight(rightSubtree);
