@@ -11,4 +11,51 @@ public class SortHelper{
 		list[index1] = list[index2];
 		list[index2] = temp;
 	}
+
+	/* Helper method to split an array into smaller lists
+	*  of size equal to half the original list.
+	*/
+	public static void split(int [] list, int [] firstHalf, int [] secondHalf){
+		int index = 0;
+		int secondHalfIndex = firstHalf.length;
+		for (int element : list){
+			if (index < secondHalfIndex){
+				firstHalf[index] = list[index];
+			} else {
+				secondHalf[index - secondHalfIndex] = list[index];
+			}
+			index++;
+		}
+	}
+
+	/* 
+	 * Merges the splitted lists back into a sorted list
+	 */
+	public static void merge(int [] list, int [] firstHalf, int [] secondHalf){
+		int mergeIndex = 0;
+		int firstHalfIndex = 0;
+		int secondHalfIndex = 0;
+		
+		while (firstHalfIndex < firstHalf.length && secondHalfIndex < secondHalf.length){
+			if (firstHalf[firstHalfIndex] < secondHalf[secondHalfIndex]){
+				list[mergeIndex] = firstHalf[firstHalfIndex];
+				firstHalfIndex++;
+			} else if (secondHalfIndex < secondHalf.length){
+				list[mergeIndex] = secondHalf[secondHalfIndex];
+				secondHalfIndex++;
+			}
+			mergeIndex++;
+		}
+
+		if (firstHalfIndex < firstHalf.length){
+			while (mergeIndex < list.length){
+				list[mergeIndex++] = firstHalf[firstHalfIndex++];
+			}
+		}
+		if (secondHalfIndex < secondHalf.length){
+			while (mergeIndex < list.length){
+				list[mergeIndex++] = secondHalf[secondHalfIndex++];
+			}
+		}
+	}
 }
