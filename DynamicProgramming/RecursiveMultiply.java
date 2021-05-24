@@ -3,29 +3,23 @@ public class RecursiveMultiply{
 	public static int minProduct(int a, int b){
 		int smaller = a < b ? a : b;
 		int bigger = a < b ? b : a;
-		int [] memo = new int[smaller + 1];
-		return minProductHelper(smaller, bigger, memo);
+		return minProductHelper(smaller, bigger);
 	}
 
-	private static int minProductHelper(int smaller, int bigger, int [] memo){
+	private static int minProductHelper(int smaller, int bigger){
 		if (smaller == 0){
 			return smaller;
 		} else if (smaller == 1){
 			return bigger;
-		} else if (memo[smaller] > 0){
-			return memo[smaller];
 		}
-
 		int s = smaller >> 1;
-		int halfProd = minProductHelper(s, bigger, memo);
+		int halfProd = minProductHelper(s, bigger);
 		if (smaller % 2 == 0){
-			memo[smaller] = halfProd + halfProd;
+			return halfProd + halfProd;
 		} else {
-			memo[smaller] = halfProd + halfProd + bigger;
+			return halfProd + halfProd + bigger;
 		}
-		return memo[smaller];
 	}
-
 
 	public static void main(String...ar){
 		long startTime = System.currentTimeMillis();
