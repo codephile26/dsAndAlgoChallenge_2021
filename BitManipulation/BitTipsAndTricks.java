@@ -15,4 +15,7 @@ public class BitTipsAndTricks{
 	// think logically - 1 << 0 - it is represented in 8 bit form as 00000001 - which is 2^0
 	// second option - 1 << 1 - represented in 8 bit form as 00000010 - which is 2^1
 	// third option - 1 << 2 - represented in 8 bit form as 00000100 -which is 2^2
+
+	//To multiply a number n by xth power of 2
+	// n << x  is equivalent to n * 2^x
 }
