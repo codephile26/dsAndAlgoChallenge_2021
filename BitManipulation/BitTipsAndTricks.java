@@ -5,4 +5,7 @@ public class BitTipsAndTricks{
 
 	//to divide a binary number by two
 	// n >>= 1
+
+	// To Multiply a binary number by two
+	// n <<= 1
 }
