@@ -21,6 +21,8 @@ public class FirstNegativeElementInWindow{
 				result[i - k] = 0;
 			}
 
+			// remove elements from the queue when we proceed to the next  window, here the condition after && 
+			// is responsible for checking if the current index in queue is less than the index of the next //window.
 			while((!list.isEmpty()) && list.peek() < (i - k + 1)){
 				list.remove();
 			}
