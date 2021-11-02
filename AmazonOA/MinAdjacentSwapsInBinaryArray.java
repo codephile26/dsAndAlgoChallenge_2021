@@ -1,6 +1,7 @@
 public class MinAdjacentSwapsInBinaryArray{
 	public static void main(String...ar){
-		int [] A = new int[]{1,0,0,1,0,1,1,0,0,1};
+		//int [] A = new int[]{1,0,0,1,0,1,1,0,0,1};
+		int [] A = new int[]{1,0,1,0,1};
 		System.out.println(minAdjacentSwapsInBinaryArrayLeft(A));
 		System.out.println(minAdjacentSwapsInBinaryArrayRight(A));
 	}
