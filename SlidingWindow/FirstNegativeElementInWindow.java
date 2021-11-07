@@ -3,47 +3,70 @@ import java.util.LinkedList;
 public class FirstNegativeElementInWindow{
 
 	public static int[] findFirstNegativeElementInWindow(int [] arr, int k){
-		int i;
 		int [] result = new int[arr.length - k + 1];
-		LinkedList<Integer> list = new LinkedList<>();
-		//Before hitting the size of the sliding window
-		for (i = 0; i < k;i++){
+		int i;
+		LinkedList<Integer> dQ = new LinkedList<>();
+		for (i =0; i < k; i++){
 			if (arr[i] < 0){
-				list.add(i);
+				dQ.add(i);
 			}
 		}
-
-		// calculations after hitting the sliding window
-		for (; i < arr.length; i++){
-			if (!(list.isEmpty())){
-				result[i - k] = list.peek();
-			} else {
-				result[i - k] = 0;
+		
+		for (;i < arr.length; i++){
+			if (!dQ.isEmpty()){
+				result[i-k] = arr[dQ.peek()];
 			}
-
-			// remove elements from the queue when we proceed to the next  window, here the condition after && 
-			// is responsible for checking if the current index in queue is less than the index of the next //window.
-			while((!list.isEmpty()) && list.peek() < (i - k + 1)){
-				list.remove();
+			
+			//remove indices which are not in current window
+			while (!dQ.isEmpty() && dQ.peek() < i - k + 1){
+				dQ.remove();
 			}
-
+			
 			if (arr[i] < 0){
-				list.add(i);
+				dQ.add(i);
 			}
 		}
-
-		if (!list.isEmpty()){
-			result[i] = list.peek();
-		} else {
-			result[i] = 0;
-		}
-
 		return result;
 	}
 
+	public static int[] findFirstNegativeElementInWindowNoQueue(int [] arr, int k){
+		int [] result = new int[arr.length - k + 1];
+		int firstNegativeIndex = 0;
+		for (int i = k - 1; i < arr.length; i++){
+			while ((firstNegativeIndex < i) && (firstNegativeIndex <= i- k || arr[firstNegativeIndex] > 0)){
+				firstNegativeIndex++;
+			}
+
+			if (arr[firstNegativeIndex] < 0){
+				result[i-k+1] = arr[firstNegativeIndex];
+			} else {
+				result[i-k+1] = 0;
+			}
+
+		}
+		return result;
+	}
+	
+	public static int[] findFirstNegativeElementInWindowBruteForce(int [] arr, int k){
+		int [] result = new int[arr.length - k + 1];
+		for (int i = 0; i < arr.length - k + 1; i++){
+			for (int j = 0; j < k; j++){
+				if (arr[i+j] < 0){
+					result[i]= arr[i+j];
+					break;
+				}
+			}
+		}
+		return result;
+	}
+	
 	public static void main(String...ar){
-		int [] arr = new int[]{12,-1,-7,8,-15,30,16,28};
-		System.out.print(findFirstNegativeElementInWindow(arr,3));
+		int [] arr = new int[]{12,-1,-7,8,-15,30,-16,28};
+		// int [] result = findFirstNegativeElementInWindowBruteForce(arr,3);
+		// int [] result = findFirstNegativeElementInWindow(arr,3);
+		int [] result = findFirstNegativeElementInWindowNoQueue(arr,3);
+		for(int i : result)
+		  System.out.print(" " + i);
 	}
 
 
